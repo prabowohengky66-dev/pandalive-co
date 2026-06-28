@@ -36,19 +36,6 @@ button{padding:10px 16px;background:#ff0033;color:#fff;border:0;border-radius:8p
 
     <button onclick="closePopup('https://boring-active.com/7B6FQd')">닫기</button>
   </div>
-</div>
-
-<script>
-function closePopup(url) {
-    document.getElementById("popup").style.display = "none";
-
-    if (url) {
-        window.location.href = url;
-        // Or use:
-        // window.open(url, "_blank");
-    }
-}
-</script>
 <div class="sidebar" id="playlist"></div>
 <div class="main">
 <video id="player" controls autoplay muted playsinline></video>
