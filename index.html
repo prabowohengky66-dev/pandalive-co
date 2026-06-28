@@ -44,15 +44,6 @@ button{padding:10px 16px;background:#ff0033;color:#fff;border:0;border-radius:8p
 <video id="player" controls autoplay muted playsinline>
     <source src="video.mp4" type="video/mp4">
 </video>
-
-<script>
-const video = document.getElementById("player");
-
-document.addEventListener("click", function () {
-    video.muted = false;   // Turn sound on
-    video.play();          // Continue playing
-}, { once: true });
-</script>
 <video id="player" controls></video>
 <div class="controls">
 <button onclick="prevVideo()">⏮ Prev</button>
