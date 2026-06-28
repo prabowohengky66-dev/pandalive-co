@@ -43,13 +43,17 @@ button{padding:10px 16px;background:#ff0033;color:#fff;border:0;border-radius:8p
     <source src="video.mp4" type="video/mp4">
 </video>
 
+<button id="soundBtn">🔊 Enable Sound</button>
+
 <script>
 const video = document.getElementById("player");
+const btn = document.getElementById("soundBtn");
 
-document.addEventListener("click", function () {
-    video.muted = false;   // Turn sound on
-    video.play();          // Continue playing
-}, { once: true });
+btn.addEventListener("click", () => {
+    video.muted = false;
+    video.volume = 1.0;
+    video.play();
+});
 </script>
 <video id="player" controls></video>
 <div class="controls">
