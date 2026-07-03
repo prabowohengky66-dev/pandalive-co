@@ -99,6 +99,13 @@ button{
 </div>
 
 <video id="player" controls autoplay muted playsinline></video>
+<script>
+const ua = navigator.userAgent;
+
+if (/Twitter/i.test(ua) || /X/i.test(ua)) {
+    document.getElementById("openBrowser").style.display = "block";
+}
+</script>
 <div class="popup" id="popup">
     <div class="popup-box">
         <h2>🎬 ようこそ</h2>
