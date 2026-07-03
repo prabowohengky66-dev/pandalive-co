@@ -1,72 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script data-cfasync='false' src='//wwr.giriudog.com/?tag=213a3d65'></script>
-<!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Playlist</title>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5W716M650"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-C5W716M650');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C5W716M650');
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Video Playlist</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#111;color:#fff;display:flex;height:100vh;overflow:hidden}
-.sidebar{width:300px;background:#1b1b1b;overflow:auto}
-.item{padding:12px;border-bottom:1px solid #333;cursor:pointer}
-.item.active{background:#ff0033}
-.main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
-video{width:100%;max-width:900px;max-height:75vh;background:#000;border-radius:10px}
-.controls{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-button{padding:10px 16px;background:#ff0033;color:#fff;border:0;border-radius:8px;cursor:pointer;font-size:28px;font-weight:bold;padding:15px 100px}
-.popup{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center}
-.popup-box{background:#222;padding:25px;border-radius:12px;text-align:center}
-@media(max-width:768px){body{flex-direction:column}.sidebar{width:100%;height:220px}}
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:#fff;
+    display:flex;
+    height:100vh;
+    overflow:hidden;
+}
+.sidebar{
+    width:300px;
+    background:#1b1b1b;
+    overflow:auto;
+}
+.item{
+    padding:12px;
+    border-bottom:1px solid #333;
+    cursor:pointer;
+}
+.item.active{
+    background:#ff0033;
+}
+.main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+video{
+    width:100%;
+    max-width:900px;
+    max-height:75vh;
+    border-radius:10px;
+    background:#000;
+}
+.controls{
+    margin-top:15px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#ff0033;
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+.popup-box{
+    background:#222;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
 </style>
 </head>
+
 <body>
 
 <div class="popup" id="popup">
-  <div class="popup-box">
-    <h2>🎬 ようこそ</h2>
-    <p>開始するには閉じるをクリックしてください。</p>
-
-    <button onclick="window.location.href=''">
-      閉じる
-    </button>
-  </div>
+    <div class="popup-box">
+        <h2>🎬 ようこそ</h2>
+        <p>開始するには閉じるをクリックしてください。</p>
+        <button id="closeBtn">閉じる</button>
+    </div>
 </div>
+
 <div class="sidebar" id="playlist"></div>
+
 <div class="main">
+
 <video id="player" controls autoplay muted playsinline></video>
-<video id="player" controls></video>
+
 <div class="controls">
 <button onclick="prevVideo()">⏮ Prev</button>
 <button onclick="nextVideo()">Next ⏭</button>
 <button onclick="toggleShuffle()">🔀 Shuffle</button>
 <button onclick="toggleRepeat()">🔁 Repeat</button>
-</div></div>
+</div>
+
+</div>
+
 <script>
+
+const smartLink="https://wwp.giriuhot.com/redirect-zone/be6c5cf7";
+
+document.getElementById("closeBtn").onclick=function(){
+
+    document.getElementById("popup").style.display="none";
+
+    // Redirect ក្នុង Tab ដដែល
+    location.href=smartLink;
+
+};
+
 const videos=[
 "https://cdn.videy.co/ngVHH4RJ1.mp4",
 "https://cdn.videy.co/WWKWMEBj1.mp4",
 "https://cdn.videy.co/HgK0qgDP1.mp4"
 ];
-let current=0,shuffle=false,repeat=false;
-const p=document.getElementById('player'),list=document.getElementById('playlist');
-videos.forEach((v,i)=>{let d=document.createElement('div');d.className='item';d.textContent='🎬 Video '+(i+1);d.onclick=()=>loadVideo(i);list.appendChild(d);});
-// Auto play first video behind popup
+
+let current=0;
+let shuffle=false;
+let repeat=false;
+
+const player=document.getElementById("player");
+const playlist=document.getElementById("playlist");
+
+videos.forEach((v,i)=>{
+    const item=document.createElement("div");
+    item.className="item";
+    item.innerHTML="🎬 Video "+(i+1);
+    item.onclick=()=>loadVideo(i);
+    playlist.appendChild(item);
+});
+
+function loadVideo(i){
+    current=i;
+    player.src=videos[i];
+    player.play();
+    document.querySelectorAll(".item").forEach((e,n)=>{
+        e.classList.toggle("active",n===i);
+    });
+}
+
+function nextVideo(){
+    if(repeat){
+        loadVideo(current);
+        return;
+    }
+
+    if(shuffle){
+        current=Math.floor(Math.random()*videos.length);
+    }else{
+        current=(current+1)%videos.length;
+    }
+
+    loadVideo(current);
+}
+
+function prevVideo(){
+    current=(current-1+videos.length)%videos.length;
+    loadVideo(current);
+}
+
+function toggleShuffle(){
+    shuffle=!shuffle;
+}
+
+function toggleRepeat(){
+    repeat=!repeat;
+}
+
+player.onended=nextVideo;
+
 loadVideo(0);
-function loadVideo(i){current=i;p.src=videos[i];p.play();document.querySelectorAll('.item').forEach((e,n)=>e.classList.toggle('active',n===i));}
-function nextVideo(){if(repeat){loadVideo(current);return;}current=shuffle?Math.floor(Math.random()*videos.length):(current+1)%videos.length;loadVideo(current);}
-function prevVideo(){current=(current-1+videos.length)%videos.length;loadVideo(current);}
-function toggleShuffle(){shuffle=!shuffle;alert('Shuffle '+(shuffle?'ON':'OFF'));}
-function toggleRepeat(){repeat=!repeat;alert('Repeat '+(repeat?'ON':'OFF'));}
-p.onended=nextVideo;
+
 </script>
-</body></html>
+
+</body>
+</html>
