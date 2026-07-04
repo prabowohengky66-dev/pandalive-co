@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5W716M650"></script>
@@ -9,173 +9,289 @@
   gtag('js', new Date());
   gtag('config', 'G-C5W716M650');
 </script>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Video Playlist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Trending Content</title>
+
+<meta property="og:title" content="🔥 Trending Content">
+<meta property="og:description" content="Watch now">
+<meta property="og:image" content="https://yourdomain.com/photo.jpg">
+<meta property="og:url" content="https://yourdomain.com">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🔥 Trending Content">
+<meta name="twitter:description" content="Watch now">
+<meta name="twitter:image" content="https://yourdomain.com/photo.jpg">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 body{
-    font-family:Arial,sans-serif;
-    background:#111;
-    color:#fff;
-    display:flex;
-    height:100vh;
-    overflow:hidden
+margin:0;
+background:#000;
+font-family:Arial,sans-serif;
 }
-.sidebar{
-    width:300px;
-    background:#1b1b1b;
-    overflow:auto
-}
-.item{
-    padding:12px;
-    border-bottom:1px solid #333;
-    cursor:pointer
-}
-.item.active{
-    background:#ff0033
-}
-.main{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:20px
-}
+
 video{
-    width:100%;
-    max-width:900px;
-    max-height:75vh;
-    background:#000;
-    border-radius:10px
+width:100%;
+height:100vh;
+object-fit:cover;
 }
-.controls{
-    margin-top:12px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap
+
+#overlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url('https://yourdomain.com/photo.jpg') center center/cover no-repeat;
+z-index:9999;
 }
-button{
-    padding:15px 30px;
-    background:#ff0033;
-    color:#fff;
-    border:0;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:28px;
-    font-weight:bold
+
+#dark{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
 }
-.popup{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.8);
-    display:flex;
-    align-items:center;
-    justify-content:center
+
+#content{
+position:relative;
+z-index:2;
+text-align:center;
+color:#fff;
+padding-top:140px;
 }
-.popup-box{
-    background:#222;
-    padding:25px;
-    border-radius:12px;
-    text-align:center
-}
-@media(max-width:768px){
-    body{flex-direction:column}
-    .sidebar{width:100%;height:220px}
+
+#countdown{
+font-size:70px;
+font-weight:bold;
+margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <h2>🎬 مرحبًا بكم</h2>
-    <p>للبدء، انقر على زر الإغلاق.</p>
-    <button onclick="closePopup()">إغلاق</button>
-  </div>
+<video id="player" autoplay muted playsinline>
+<source src="https://cdn.videy.co/KlYq83431.mp4" type="video/mp4">
+</video>
+
+<div id="overlay">
+
+<div id="dark"></div>
+
+<div id="content">
+
+<h2>🔞 성인 전용 콘텐츠</h2>
+
+<p>⏳ 잠시만 기다려 주세요...</p>
+
+<div style="
+background:#0070ba;
+width:300px;
+margin:auto;
+padding:15px;
+border-radius:10px;
+">
+콘텐츠를 준비하고 있습니다
 </div>
 
-<div class="sidebar" id="playlist"></div>
+<div id="countdown">5</div>
 
-<div class="main">
-  <video id="player" controls autoplay muted playsinline></video>
+</div>
 
-  <div class="controls">
-    <button onclick="prevVideo()">⏮ Prev</button>
-    <button onclick="nextVideo()">Next ⏭</button>
-    <button onclick="toggleShuffle()">🔀 Shuffle</button>
-    <button onclick="toggleRepeat()">🔁 Repeat</button>
-  </div>
 </div>
 
 <script>
-const videos = [
-  "https://cdn.videy.co/ngVHH4RJ1.mp4",
-  "https://cdn.videy.co/WWKWMEBj1.mp4",
-  "https://cdn.videy.co/HgK0qgDP1.mp4"
-];
 
-let current = 0, shuffle = false, repeat = false;
+const video = document.getElementById('player');
+let shown = false;
 
-const p = document.getElementById('player'),
-      list = document.getElementById('playlist');
+video.addEventListener('timeupdate',function(){
 
-videos.forEach((v,i)=>{
-  let d = document.createElement('div');
-  d.className = 'item';
-  d.textContent = '🎬 Video ' + (i+1);
-  d.onclick = ()=>loadVideo(i);
-  list.appendChild(d);
+if(video.currentTime >= 5 && !shown){
+
+shown = true;
+
+document.getElementById('overlay').style.display='block';
+
+let count = 5;
+
+document.getElementById('countdown').innerHTML=count;
+
+let timer = setInterval(function(){
+
+count--;
+
+document.getElementById('countdown').innerHTML=count;
+
+if(count <= 0){
+
+clearInterval(timer);
+
+window.location.href="https://www.effectivecpmnetwork.com/fqe7h6e1?key=1dd585cf18df934105bec8bc629e7064";
+
+}
+
+},1000);
+
+}
+
 });
 
-// Auto play first video behind popup
-loadVideo(0);
+</script>
 
-function loadVideo(i){
-  current = i;
-  p.src = videos[i];
-  p.play();
-  document.querySelectorAll('.item')
-    .forEach((e,n)=>e.classList.toggle('active', n===i));
+</body>
+</html>
+
+...................................................
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K7MJDJNJ99"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K7MJDJNJ99');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Trending Content</title>
+
+<meta property="og:title" content="🔥 Trending Content">
+<meta property="og:description" content="09:24">
+<meta property="og:image" content="https://i.ibb.co/WNNDwnR5/rrrrrr.png">
+<meta property="og:url" content="https://yourdomain.com">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🔥 Trending Content">
+<meta name="twitter:description" content="09:24">
+<meta name="twitter:image" content="https://i.ibb.co/WNNDwnR5/rrrrrr.png">
+
+<style>
+body{
+margin:0;
+background:#000;
+font-family:Arial,sans-serif;
 }
 
-function nextVideo(){
-  if(repeat){
-    loadVideo(current);
-    return;
-  }
-  current = shuffle
-    ? Math.floor(Math.random()*videos.length)
-    : (current+1)%videos.length;
-  loadVideo(current);
+video{
+width:100%;
+height:100vh;
+object-fit:cover;
 }
 
-function prevVideo(){
-  current = (current-1+videos.length)%videos.length;
-  loadVideo(current);
+#overlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url('https://i.ibb.co/WNNDwnR5/rrrrrr.png') center center/cover no-repeat;
+z-index:9999;
 }
 
-function toggleShuffle(){
-  shuffle = !shuffle;
-  alert('Shuffle ' + (shuffle ? 'ON' : 'OFF'));
+#dark{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
 }
 
-function toggleRepeat(){
-  repeat = !repeat;
-  alert('Repeat ' + (repeat ? 'ON' : 'OFF'));
+#content{
+position:relative;
+z-index:2;
+text-align:center;
+color:#fff;
+padding-top:140px;
 }
 
-function closePopup(){
-  document.getElementById('popup').style.display='none';
-  loadVideo(0);
-  window.location.href='https://www.effectivecpmnetwork.com/fqe7h6e1?key=1dd585cf18df934105bec8bc629e7064';
+#countdown{
+font-size:70px;
+font-weight:bold;
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<video id="player" autoplay muted playsinline>
+<source src="https://cdn.videy.co/KlYq83431.mp4" type="video/mp4">
+</video>
+
+<div id="overlay">
+
+<div id="dark"></div>
+
+<div id="content">
+
+<h2>🔞 성인 전용 콘텐츠</h2>
+
+<p>⏳ 잠시만 기다려 주세요...</p>
+
+<div style="
+background:#0070ba;
+width:300px;
+margin:auto;
+padding:15px;
+border-radius:10px;
+">
+콘텐츠를 준비하고 있습니다
+</div>
+
+<div id="countdown">5</div>
+
+</div>
+
+</div>
+
+<script>
+
+const video = document.getElementById('player');
+let shown = false;
+
+video.addEventListener('timeupdate',function(){
+
+if(video.currentTime >= 5 && !shown){
+
+shown = true;
+
+document.getElementById('overlay').style.display='block';
+
+let count = 5;
+
+document.getElementById('countdown').innerHTML=count;
+
+let timer = setInterval(function(){
+
+count--;
+
+document.getElementById('countdown').innerHTML=count;
+
+if(count <= 0){
+
+clearInterval(timer);
+
+window.location.href="https://www.effectivecpmnetwork.com/fqe7h6e1?key=1dd585cf18df934105bec8bc629e7064";
+
 }
 
-p.onended = nextVideo;
+},1000);
+
+}
+
+});
+
 </script>
 
 </body>
