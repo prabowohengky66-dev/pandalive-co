@@ -1,135 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="km">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C5W716M650"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-C5W716M650');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Trending Content</title>
-
-<meta property="og:title" content="🔥 Trending Content">
-<meta property="og:description" content="Watch now">
-<meta property="og:image" content="https://yourdomain.com/photo.jpg">
-<meta property="og:url" content="https://yourdomain.com">
-<meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="🔥 Trending Content">
-<meta name="twitter:description" content="Watch now">
-<meta name="twitter:image" content="https://yourdomain.com/photo.jpg">
-
-<style>
-body{
-margin:0;
-background:#000;
-font-family:Arial,sans-serif;
-}
-
-video{
-width:100%;
-height:100vh;
-object-fit:cover;
-}
-
-#overlay{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:url('https://i.ibb.co/MHWpc7r/photo-2022-05-27-20-56-28.jpg') center center/cover no-repeat;
-z-index:9999;
-}
-
-#dark{
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.8);
-}
-
-#content{
-position:relative;
-z-index:2;
-text-align:center;
-color:#fff;
-padding-top:140px;
-}
-
-#countdown{
-font-size:70px;
-font-weight:bold;
-margin-top:20px;
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0b10">
+  <title>Panda Live</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <header class="topbar">
+    <a class="brand" href="#">PANDA <span>LIVE</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search live channels...">
+    </div>
+    <button id="refreshBtn" class="refresh">↻ Refresh</button>
+  </header>
 
-<video id="player" autoplay muted playsinline>
-<source src="https://cdn.videy.co/MRso0FDY1.mp4" type="video/mp4">
-</video>
+  <nav class="tabs">
+    <button class="tab active" data-filter="all">All Live</button>
+    <button class="tab" data-filter="popular">Popular</button>
+    <button class="tab" data-filter="new">New</button>
+  </nav>
 
-<div id="overlay">
+  <main>
+    <section class="hero">
+      <div>
+        <span class="live-pill">● LIVE NOW</span>
+        <h1>Watch live channels</h1>
+        <p>Responsive live directory for mobile and desktop.</p>
+      </div>
+    </section>
 
-<div id="dark"></div>
+    <div class="section-head">
+      <h2>🔴 Live Channels</h2>
+      <span id="status">Loading...</span>
+    </div>
 
-<div id="content">
+    <section id="grid" class="grid"></section>
+    <div id="empty" class="empty hidden">No channels found.</div>
+  </main>
 
-<h2>🔞 Adult Only Content</h2> <p>⏳ Please wait a moment...</p> <div style=" background:#0070ba; width:300px; margin:auto; padding:15px; border-radius:10px; "> Preparing content </div>
-
-<div id="countdown">5</div>
-
-</div>
-
-</div>
-
-<script>
-
-const video = document.getElementById('player');
-let shown = false;
-
-video.addEventListener('timeupdate',function(){
-
-if(video.currentTime >= 11 && !shown){
-
-shown = true;
-
-document.getElementById('overlay').style.display='block';
-
-let count = 1;
-
-document.getElementById('countdown').innerHTML=count;
-
-let timer = setInterval(function(){
-
-count--;
-
-document.getElementById('countdown').innerHTML=count;
-
-if(count <= 0){
-
-clearInterval(timer);
-
-window.location.href="https://www.effectivecpmnetwork.com/fqe7h6e1?key=1dd585cf18df934105bec8bc629e7064";
-
-}
-
-},1000);
-
-}
-
-});
-
-</script>
-
+  <footer>© 2026 Panda Live Directory</footer>
+  <script src="app.js"></script>
 </body>
 </html>
