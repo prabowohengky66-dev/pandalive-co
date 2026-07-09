@@ -5,7 +5,7 @@ const demo = Array.from({length: 16}, (_,i)=>({
   title:["Live show","Chatting now","Music & talk","New live stream"][i%4],
   viewers: Math.floor(120+Math.random()*4800),
   category: i<5 ? "popular" : i>11 ? "new" : "all",
-  thumbnail:`https://picsum.photos/seed/live${i+1}/640/360`,
+  thumbnail:`https://www.pandalive.co.kr/seed/live${i+1}/640/360`,
   url:"#"
 }));
 
